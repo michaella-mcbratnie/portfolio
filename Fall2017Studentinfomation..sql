@@ -1,5 +1,6 @@
 
-/* Provide total scholarship, full-time/part-time status and major for each student enrolled during Fall 2017*/
+/* This query provides total scholarship, full-time/part-time status and major for each student enrolled during Fall 2017 */
+
 SELECT d.student_id, 
    d.Total_scholarship, 
    d.major
@@ -19,4 +20,4 @@ FROM (SELECT m.major,
             WHERE p.student_id = m.student_id
               AND p.term in ('2017/Fall')
             GROUP BY p.Student_ID as Total_Credits,
-       FROM Major as m) as d(data)
+       FROM Major as m) as d
