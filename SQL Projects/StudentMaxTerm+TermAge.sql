@@ -8,9 +8,9 @@ routes to properly create the termage and select the most recent term. */
 
 SELECT StudentID, 
 	Term, 
-	DATEDIFF(day, Birthdate, Getdate())/365.25 as Termage --incorrect because GetDate gets today's date, therefore age of each indivual today was caluclated not term age
+	DATEDIFF(day, Birthdate, Getdate())/365.25 as Termage --GetDate gets today's date, therefore age of each individual today was caluclated not the age at that term
 FROM Students as a
-WHERE a.term = (SELECT MAX(b.term)--Incorrect, because term is a varchar data type using max provides the last data point based on alphabetic order, in which 2018/Winter > 2018/Fall
+WHERE a.term = (SELECT MAX(b.term) --term is varchar so using max provides the last data point based on an alphabetic order, in which 2018/Winter > 2018/Fall
 		FROM Students as b
 		WHERE a.studentID=b.studentID
 		GROUP BY StudentID)
