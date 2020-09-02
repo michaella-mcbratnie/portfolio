@@ -10,7 +10,7 @@ SELECT StudentID,
 	Term, 
 	DATEDIFF(day, Birthdate, Getdate())/365.25 as Termage --incorrect because GetDate gets today's date, therefore age of each indivual today was caluclated not term age
 FROM Students as a
-WHERE a.term = (SELECT MAX(b.term)--Incorrect, because term is a varchar data type using max provides the last data point based on alphabetic order
+WHERE a.term = (SELECT MAX(b.term)--Incorrect, because term is a varchar data type using max provides the last data point based on alphabetic order, in which 2018/Winter > 2018/Fall
 		FROM Students as b
 		WHERE a.studentID=b.studentID
 		GROUP BY StudentID)
