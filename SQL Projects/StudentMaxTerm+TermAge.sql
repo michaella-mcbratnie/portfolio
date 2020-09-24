@@ -22,11 +22,11 @@ SELECT StudentID,
 	s.Term, 
 	DATEDIFF(day, Birthdate, t.date)/365.25 as Termage
 FROM Students as s
-JOIN Terms as t
+LEFT JOIN Terms as t --only need to connect terms where it aligns with the Students table
 	ON s.Term = t.term
 WHERE Date = (SELECT max(Date) as date
 		FROM Students as sb
-		JOIN terms as tb
+		LEFT JOIN terms as tb
 			On sb.Term= tb.Term
 		GROUP BY StudentID
 		Having sb.StudentID = s.StudentID)
